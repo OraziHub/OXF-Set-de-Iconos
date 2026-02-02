@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OXF · Iconos Animados </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">    
+    <style>
+        /* Contenedor para posicionar el overlay sobre la imagen */
+        .img-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gif-custom {
+            height: auto;
+            transition: width 0.2s ease-in-out;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* --- EL TRUCO DEL HOVER/PLAY --- */
+        /* La capa que oscurece el GIF */
+        .gif-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            opacity: 1; /* Visible por defecto */
+            pointer-events: none; /* Deja que el mouse interactúe con la tarjeta debajo */
+        }
+        
+        /* Icono de Play (usando un emoji para simplificar) */
+        .gif-overlay::after {
+            content: '▶'; /* Puedes cambiar esto por un icono de FontAwesome o SVG */
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 1. Efecto Hover: Al pasar el mouse sobre la tarjeta, el overlay desaparece */
+        .card:hover .gif-overlay {
+            opacity: 0;
+        }
+
+        /* 2. Modo "Reproducir Todo": Si la galería tiene esta clase, fuerza a ocultar todos los overlays */
+        #gallery.play-all-active .gif-overlay {
+            opacity: 0 !important;
+        }
+        /* -------------------------------- */
+
+        .card { transition: transform 0.2s; height: 100%; }
+        .card:hover { transform: translateY(-5px); z-index: 10; } /* Z-index para que sobresalga al hacer hover */
+    </style>
+</head>
+<body class="" style="background-color: #ececec !important">
+
+    <nav class="navbar bg-light navbar-light sticky-top shadow-sm mb-4 p-3">
+        <div class="container flex-wrap justify-content-center align-items-center">
+            <a class="navbar-brand fw-bold" href="#">OXF · Iconos Animados</a>
+            
+            <div class="d-flex align-items-center gap-4">
+            <div class="text-white bg-opacity-25 p-2">
+                <input type="text" id="searchName" class="form-control form-control-sm fw-bold border-0" placeholder="🔍 Buscar...">
+            </div>
+            <div class="text-white p-2">
+                <select id="searchCategory" class="form-select form-select-sm fw-bold border-0">
+                    <option value="all">Ver Todos / Filtrar</option>
+                    <option value="Canales Digitales">Canales Online</option>
+                    <option value="Canales Offline">Canales Offline</option>
+                    <option value="Resultados">Resultados</option>
+                    <option value="Métricas Digitales">Métricas Digitales</option>
+                    <option value="KPIs Claves">KPIs Claves</option>
+                </select>
+            </div>
+                <!-- <div class="form-check form-switch p-2 ps-5">
+                    <input class="form-check-input" type="checkbox" role="switch" id="playAllSwitch" disabled style="cursor: pointer;">
+                    <label class="form-check-label small fw-bold" for="playAllSwitch">Reproducir Todo</label>
+                </div>  -->
+
+                <div class="d-none d-md-flex align-items-center p-2">
+                     <small class="me-2 fw-bold">Agrandar / Achicar GIFs: </small>
+                    <input type="range" class="form-range" id="sizeSlider" min="150" max="640" value="160" style="width: 100px;">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="gallery" class="d-flex flex-wrap justify-content-center gap-4 pb-5">
+            <p class="text-muted mt-5">Cargando GIFs...</p>
+        </div>
+    </div>
+
+    <script>
+        // Variable global para los datos
+        let gifData = [];
+
+        // Elementos del DOM
+        const gallery = document.getElementById('gallery');
+        const slider = document.getElementById('sizeSlider');
+        const inputName = document.getElementById('searchName');
+        const selectCat = document.getElementById('searchCategory');
+        // NUEVO: El interruptor
+        //const playAllSwitch = document.getElementById('playAllSwitch');
+
+        // --- FUNCIÓN PRINCIPAL: Cargar JSON ---
+        async function cargarDatos() {
+            try {
+                // Asegúrate de tener el archivo datos.json en la misma carpeta
+                const respuesta = await fetch('datos.json');
+                if (!respuesta.ok) throw new Error("No se pudo encontrar datos.json");
+                gifData = await respuesta.json();
+                renderGallery(gifData);
+            } catch (error) {
+                console.error(error);
+                gallery.innerHTML = `<div class="alert alert-danger">Error: ${error.message}. Recuerda usar Live Server.</div>`;
+            }
+        }
+
+        // --- FUNCIÓN DE RENDERIZADO (Actualizada con el overlay) ---
+        function renderGallery(data) {
+            gallery.innerHTML = '';
+            const currentSize = slider.value;
+
+            if (data.length === 0) {
+                gallery.innerHTML = '<p class="text-muted mt-5">No se encontraron resultados.</p>';
+                return;
+            }
+
+            data.forEach(item => {
+                // Construimos el enlace directo de Drive
+                const directUrl = `https://drive.google.com/uc?export=view&id=${item.driveId}`;
+
+                /* AQUÍ ESTÁ LA MAGIA:
+                   Añadimos un div 'img-wrapper' que contiene la imagen y
+                   un nuevo div 'gif-overlay' encima de ella.
+                        <div class="gif-overlay"></div>
+                */
+                const card = `
+                    <div class="border-0 p-2">
+                        <div class="img-wrapper rounded">
+                            <img src="${item.url}" class="gif-custom" style="width: ${currentSize}px;" alt="${item.name}" loading="lazy">
+                           
+                        </div>
+                        <div class="card-body p-2 text-center">
+                            <h6 class="mb-1 text-dark small fw-bold text-truncate" style="max-width: ${currentSize}px;">${item.name}</h6>
+                            <span class="badge bg-light text-secondary fw-light border small">${item.category}</span>
+                        </div>
+                    </div>
+                `;
+                gallery.innerHTML += card;
+            });
+        }
+
+        // --- Lógica de Filtros ---
+        function handleFilters() {
+            const nameQuery = inputName.value.toLowerCase();
+            const catQuery = selectCat.value;
+            const filtered = gifData.filter(gif => {
+                const matchesName = gif.name.toLowerCase().includes(nameQuery);
+                const matchesCat = (catQuery === 'all' || gif.category === catQuery);
+                return matchesName && matchesCat;
+            });
+            renderGallery(filtered);
+        }
+
+        // --- Lógica del Zoom ---
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            document.querySelectorAll('.gif-custom').forEach(img => {
+                img.style.width = val + 'px';
+            });
+             // Ajustamos también el ancho máximo del título para que no rompa el diseño
+            document.querySelectorAll('.card-body h6').forEach(title => {
+                title.style.maxWidth = val + 'px';
+            });
+        });
+
+        // --- NUEVO: Lógica del Switch "Reproducir Todo" ---
+       // playAllSwitch.addEventListener('change', function() {
+            // Si el switch está encendido (checked), añadimos la clase 'play-all-active'
+            // a la galería principal. El CSS se encarga del resto.
+         //   if(this.checked) {
+             //   gallery.classList.add('play-all-active');
+           // } else {
+               // gallery.classList.remove('play-all-active');
+            //}
+       // });
+
+        // Listeners de filtros
+        inputName.addEventListener('input', handleFilters);
+        selectCat.addEventListener('change', handleFilters);
+
+        // Iniciar
+        cargarDatos();
+    </script>
+</body>
+</html>

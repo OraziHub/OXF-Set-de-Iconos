@@ -1,0 +1,268 @@
+[
+  {
+    "id": 1,
+    "name": "Alcance",
+    "category": "KPIs Claves",
+    "driveId": "",
+    "url": "GIFs/01-Alcance.gif"
+  },
+  {
+    "id": 2,
+    "name": "Impresiones",
+    "category": "KPIs Claves",
+    "driveId": "",
+    "url": "GIFs/02-Impresiones.gif"
+  },
+  {
+    "id": 3,
+    "name": "Clics",
+    "category": "KPIs Claves",
+    "driveId": "",
+    "url": "GIFs/03-Clics.gif"
+  },
+  {
+    "id": 4,
+    "name": "Reproducciones",
+    "category": "KPIs Claves",
+    "driveId": "",
+    "url": "GIFs/04-Reproducciones.gif"
+  },
+  {
+    "id": 5,
+    "name": "Engagement",
+    "category": "KPIs Claves",
+    "driveId": "",
+    "url": "GIFs/05-Engagement.gif"
+  },
+  {
+    "id": 6,
+    "name": "Conversiones",
+    "category": "KPIs Claves",
+    "driveId": "",
+    "url": "GIFs/06-Conversiones.gif"
+  },
+  {
+    "id": 7,
+    "name": "Tasa de Apertura (Open Rate)",
+    "category": "Métricas Digitales",
+    "driveId": "",
+    "url": "GIFs/07-Tasa-de-Apertura-(Open-Rate).gif"
+  },
+  {
+    "id": 8,
+    "name": "Tasa de Clics (CTR)",
+    "category": "Métricas Digitales",
+    "driveId": "",
+    "url": "GIFs/08-Tasa-de-Clics-(CTR).gif"
+  },
+  {
+    "id": 9,
+    "name": "Tasa de Conversión",
+    "category": "Métricas Digitales",
+    "driveId": "",
+    "url": "GIFs/09-Tasa-de-Conversión.gif"
+  },
+  {
+    "id": 10,
+    "name": "Tasa de Rebote (Bounce Rate)",
+    "category": "Métricas Digitales",
+    "driveId": "",
+    "url": "GIFs/10-Tasa-de-Rebote-(Bounce-Rate).gif"
+  },
+  {
+    "id": 11,
+    "name": "Tasa de Cancelación de Sucripción",
+    "category": "Métricas Digitales",
+    "driveId": "",
+    "url": "GIFs/11-Tasa-de-Cancelación-de-Sucripción.gif"
+  },
+  {
+    "id": 12,
+    "name": "NPS",
+    "category": "Métricas Digitales",
+    "driveId": "",
+    "url": "GIFs/12-NPS.gif"
+  },
+  {
+    "id": 13,
+    "name": "Leads Totales",
+    "category": "Resultados",
+    "driveId": "",
+    "url": "GIFs/13-Leads-Totales.gif"
+  },
+  {
+    "id": 14,
+    "name": "Leads vía Landing",
+    "category": "Resultados",
+    "driveId": "",
+    "url": "GIFs/14-Leads-vía-Landing.gif"
+  },
+  {
+    "id": 15,
+    "name": "Costo por Lead (CPL)",
+    "category": "Resultados",
+    "driveId": "",
+    "url": "GIFs/15-Costo-por-Lead-(CPL).gif"
+  },
+  {
+    "id": 16,
+    "name": "Sesiones Web",
+    "category": "Resultados",
+    "driveId": "",
+    "url": "GIFs/16--Sesiones-Web.gif"
+  },
+  {
+    "id": 17,
+    "name": "Interacciones",
+    "category": "Resultados",
+    "driveId": "",
+    "url": "GIFs/17-Interacciones.gif"
+  },
+  {
+    "id": 18,
+    "name": "Costo por Conversión",
+    "category": "Resultados",
+    "driveId": "",
+    "url": "GIFs/18-Costo-por-Conversión.gif"
+  },
+  {
+    "id": 19,
+    "name": "Idea",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/19-Idea.gif"
+  },
+  {
+    "id": 20,
+    "name": "TV",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/20-TV.gif"
+  },
+  {
+    "id": 21,
+    "name": "Radio",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/21-Radio.gif"
+  },
+  {
+    "id": 22,
+    "name": "Gráfica",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/22-Gráfica.gif"
+  },
+  {
+    "id": 23,
+    "name": "Vía Pública",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/23-Vía-Pública.gif"
+  },
+  {
+    "id": 24,
+    "name": "Prensa",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/24-Prensa.gif"
+  },
+  {
+    "id": 25,
+    "name": "POP",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/25-POP.gif"
+  },
+  {
+    "id": 26,
+    "name": "Packaging",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/26-Packaging.gif"
+  },
+  {
+    "id": 27,
+    "name": "Presentación",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/27-Presentación.gif"
+  },
+  {
+    "id": 28,
+    "name": "MKT Collateral",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/28-MKT-Collateral.gif"
+  },
+  {
+    "id": 29,
+    "name": "Merchandising",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/29-Merchandising.gif"
+  },
+  {
+    "id": 30,
+    "name": "Stand",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/30-Stand.gif"
+  },
+  {
+    "id": 31,
+    "name": "Papelería",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/31-Papelería.gif"
+  },
+  {
+    "id": 32,
+    "name": "Activación BTL",
+    "category": "Canales Offline",
+    "driveId": "",
+    "url": "GIFs/32-Activación-BTL.gif"
+  },
+  {
+    "id": 33,
+    "name": "Web",
+    "category": "Canales Digitales",
+    "driveId": "",
+    "url": "GIFs/33-Web.gif"
+  },
+  {
+    "id": 34,
+    "name": "Landing",
+    "category": "Canales Digitales",
+    "driveId": "",
+    "url": "GIFs/34-Landing.gif"
+  },
+  {
+    "id": 35,
+    "name": "eMail MKT",
+    "category": "Canales Digitales",
+    "driveId": "",
+    "url": "GIFs/35-eMail-MKT.gif"
+  },
+  {
+    "id": 36,
+    "name": "Automation",
+    "category": "Canales Digitales",
+    "driveId": "",
+    "url": "GIFs/36-Automation.gif"
+  },
+  {
+    "id": 37,
+    "name": "Influencer",
+    "category": "Canales Digitales",
+    "driveId": "",
+    "url": "GIFs/37-Influencer.gif"
+  },
+  {
+    "id": 38,
+    "name": "RRSS",
+    "category": "Canales Digitales",
+    "driveId": "",
+    "url": "GIFs/38-RRSS.gif"
+  }
+]
